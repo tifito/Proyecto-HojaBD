@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container py-5">
+
+    <h2 class="mb-4">Productos Laborales</h2>
+
+    {% if productolaboral %}
+        <div class="row g-4">
+            {% for item in productolaboral %}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 h-100 producto-card">
+                    <h5 class="fw-bold">{{ item.nombreproducto }}</h5>
+                    <p class="mb-1"><strong>Fecha:</strong> {{ item.fechaproducto }}</p>
+                    <p class="mb-1"><strong>Descripción:</strong> {{ item.descripcion }}</p>
+
+                    {% if item.rutaproducto %}
+                    <div class="d-flex justify-content-end mt-3">
+                        <a href="{{ item.rutaproducto }}" target="_blank" class="btn btn-success">
+                            Ver Proyecto
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No hay productos laborales registrados.</p>
+    {% endif %}
+
+</main>
+
+<style>
+/* Animación suave para tarjetas */
+.producto-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Botón verde agradable */
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-success:hover {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+}
+</style>
+{% endblock %}

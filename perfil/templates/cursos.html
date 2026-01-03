@@ -9,7 +9,7 @@
         <div class="row g-4">
             {% for curso in cursos %}
             <div class="col-md-6">
-                <div class="card border rounded-3 shadow-sm p-4 d-flex flex-column h-100" style="background-color: #f9f9f9;">
+                <div class="card curso-card d-flex flex-column h-100 p-4">
                     <h5 class="fw-bold mb-3">{{ curso.nombrecurso }}</h5>
 
                     <p class="mb-1"><strong>Fecha Inicio:</strong> {{ curso.fechainicio }}</p>
@@ -46,4 +46,21 @@
     {% endif %}
 
 </main>
+
+<style>
+/* Tarjetas de cursos con borde y esquinas más marcadas */
+.curso-card {
+    background-color: #eceff2; /* gris más marcado */
+    border-radius: 16px; /* esquinas más redondeadas */
+    border: 2px solid #c1c7cd; /* borde visible */
+    box-shadow: 0 6px 18px rgba(191, 53, 53, 0.15); /* sombra más definida */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.curso-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+    background-color: #dce4eb; /* cambio de color al pasar el mouse */
+}
+</style>
 {% endblock %}

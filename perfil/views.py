@@ -26,13 +26,21 @@ def academico(request):
     return render(request, 'academico.html', context)
 
 def laboral(request):
-    datos = ProductoLaboral.objects.all()
-    context = {'laborales': datos}
+    productos = ProductoLaboral.objects.filter(activarparaqueseveaenfront=True)
+    context = {
+        'productolaboral': productos
+    }
     return render(request, 'laboral.html', context)
 
+
 def garage(request):
-    datos = VentaGarage.objects.all()
-    context = {'garages': datos}
+    # Solo los productos activados para mostrar
+    productos = VentaGarage.objects.filter(activarparaqueseveaenfront=True)
+    
+    context = {
+        'ventagarage': productos  # el nombre debe coincidir con el HTML
+    }
+    
     return render(request, 'garage.html', context)
 
 def experiencia(request):

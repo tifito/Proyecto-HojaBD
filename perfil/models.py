@@ -19,7 +19,7 @@ class DatosPersonales(models.Model):
     direcciondomiciliaria = models.CharField(max_length=50, blank=True, null=True)
     sitioweb = models.CharField(max_length=60, blank=True, null=True)
     email = models.EmailField(max_length=100, blank=True, null=True)
-    
+
     def __str__(self):
         return f"{self.nombres} {self.apellidos}"
 
@@ -111,7 +111,7 @@ class VentaGarage(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombreproducto = models.CharField(max_length=100)
     estadoproducto = models.CharField(max_length=40, choices=[('Bueno', 'Bueno'), ('Regular', 'Regular')])
-    descripcion = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.CharField(max_length=1000, blank=True, null=True)
     valordelbien = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
 
