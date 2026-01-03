@@ -9,7 +9,7 @@ from .forms import TaskForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse
 @login_required
 def complete_task(request, task_id):
     task = get_object_or_404(Task,pk=task_id,user=request.user)
@@ -42,7 +42,7 @@ def delete_task(request, task_id):
         return redirect('tasks')
     
 def home(request):
-    return render(request,'home.html')
+    return HttpResponse("🔥 SERVER OK 🔥")
    
 def signin(request):
     if request.method == 'GET':
