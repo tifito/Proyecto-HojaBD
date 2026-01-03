@@ -18,11 +18,19 @@ from django.contrib import admin
 from django.urls import path
 from perfil import views  # Vistas de tu app "perfil"
 
+# URL patterns principales
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),  # Página principal
+    path('', views.home, name='home'),
 ]
 
+# Intentar crear el superusuario automáticamente en Render/local
+try:
+    import perfil.createsuper
+except Exception:
+    pass
+
+# Archivos estáticos en DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
 
