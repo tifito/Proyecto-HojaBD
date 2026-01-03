@@ -17,18 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from perfil import views  # Vistas de tu app "perfil"
+# Archivos estáticos en DEBUG
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 # URL patterns principales
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('cursos/', views.cursos, name='cursos'), 
+    path('cursos/', views.cursos, name='cursos'),
+    path('reconocimientos/', views.reconocimientos, name='reconocimientos'),
+    path('academico/', views.academico, name='academico'),
+    path('laboral/', views.laboral, name='laboral'),
+    path('garage/', views.garage, name='garage'),
+    path('experiencia/', views.experiencia, name='experiencia'), 
 ]
 
 
-# Archivos estáticos en DEBUG
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
