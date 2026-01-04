@@ -2,7 +2,7 @@ from django.db import models
 
 # Tabla principal: Perfil
 class DatosPersonales(models.Model):
-    descripcionperfil = models.CharField(max_length=50)
+    descripcionperfil = models.CharField(max_length=500)
     perfilactivo = models.BooleanField(default=True)
     apellidos = models.CharField(max_length=60)
     nombres = models.CharField(max_length=60)
