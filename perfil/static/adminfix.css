@@ -1,0 +1,16 @@
+/* Fuerza a que las etiquetas y los inputs se separen */
+.form-row {
+    margin-bottom: 15px; /* Espacio entre filas */
+}
+
+/* Si quieres que el enlace "Actualmente" esté en su propia línea */
+.file-upload a {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Separar el botón de "Choose File" */
+input[type="file"] {
+    display: block;
+    margin-top: 10px;
+}

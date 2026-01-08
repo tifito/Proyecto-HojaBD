@@ -3,76 +3,78 @@
 {% block content %}
 <main class="container py-5">
 
-    <h2 class="mb-5 text-center fw-bold">Venta de Garage</h2>
+    {% if perfil %}
 
-    {% if ventagarage %}
-        <div class="row g-4 justify-content-center">
-            {% for item in ventagarage %}
-            <div class="col-md-6">
-                <div class="card producto-card h-100 p-4">
+        <h2 class="mb-5 text-center fw-bold">Venta de Garage</h2>
 
-                    <div class="row align-items-center">
-                        <!-- Imagen -->
-                        <div class="col-md-4 text-center mb-3 mb-md-0">
-                            {% if item.rutaproducto %}
-                                <img src="{{ item.rutaproducto }}"
-                                     alt="{{ item.nombreproducto }}"
-                                     class="img-fluid rounded-3 shadow-sm">
-                            {% else %}
-                                <img src="https://via.placeholder.com/300x300?text=Sin+Imagen"
-                                     alt="Sin imagen disponible"
-                                     class="img-fluid rounded-3 shadow-sm">
-                            {% endif %}
-                        </div>
+        {% if ventagarage %}
+            <div class="row g-4 justify-content-center">
+                {% for item in ventagarage %}
+                <div class="col-md-6">
+                    <div class="card producto-card h-100 p-4">
 
-                        <!-- Info -->
-                        <div class="col-md-8">
-                            <h5 class="fw-bold mb-2">
-                                <i class="bi bi-box-seam me-2 text-primary"></i>
-                                {{ item.nombreproducto }}
-                            </h5>
+                        <div class="row align-items-center">
 
-                            <!-- Estado -->
-                            <p class="mb-1 text-muted">
-                                <i class="bi bi-check-circle me-2"></i>
-                                <span class="estado-badge">
-                                    {{ item.estadoproducto }}
-                                </span>
-                            </p>
-
-                            <!-- Precio -->
-                            <p class="mb-1 text-muted">
-                                <i class="bi bi-cash-coin me-2"></i>
-                                ${{ item.valordelbien|default:"Consultar" }}
-                            </p>
-
-                            <!-- Descripción -->
-                            <p class="mb-3 text-muted">
-                                <i class="bi bi-info-circle me-2"></i>
-                                {{ item.descripcion }}
-                            </p>
-
-                            <!-- Botón -->
-                            {% if item.rutaproducto %}
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ item.rutaproducto }}"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="btn btn-outline-primary fw-semibold">
-                                    <i class="bi bi-image me-1"></i>
-                                    Ver imagen
-                                </a>
+                            <!-- Imagen -->
+                            <div class="col-md-4 text-center mb-3 mb-md-0">
+                                {% if item.rutaproducto %}
+                                    <img src="{{ item.rutaproducto.url }}"
+                                         alt="{{ item.nombreproducto }}"
+                                         class="img-fluid rounded-3 shadow-sm">
+                                {% endif %}
                             </div>
-                            {% endif %}
+
+                            <!-- Info -->
+                            <div class="col-md-8">
+                                <h5 class="fw-bold mb-2">
+                                    <i class="bi bi-box-seam me-2 text-primary"></i>
+                                    {{ item.nombreproducto }}
+                                </h5>
+
+                                <p class="mb-1 text-muted">
+                                    <i class="bi bi-check-circle me-2"></i>
+                                    {{ item.estadoproducto }}
+                                </p>
+
+                                <p class="mb-1 text-muted">
+                                    <i class="bi bi-cash-coin me-2"></i>
+                                    ${{ item.valordelbien }}
+                                </p>
+
+                                <p class="mb-3 text-muted">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    {{ item.descripcion }}
+                                </p>
+
+                                {% if item.rutaproducto %}
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ item.rutaproducto.url }}"
+                                       target="_blank"
+                                       class="btn btn-outline-primary fw-semibold">
+                                        <i class="bi bi-image me-1"></i>
+                                        Ver imagen
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+        {% else %}
+            <p class="text-center text-muted">
+                No hay productos en venta registrados.
+            </p>
+        {% endif %}
+
     {% else %}
-        <p class="text-center text-muted">No hay productos en venta registrados.</p>
+        <div class="text-center py-5">
+            <h4 class="text-muted fw-semibold">
+                Este perfil no se encuentra activo.
+            </h4>
+        </div>
     {% endif %}
 
 </main>

@@ -1,8 +1,4 @@
 from django.contrib import admin
-
-# admin.py
-# Por ahora no hay modelos, así que no hacemos nada aquí
-
 from django.contrib import admin
 from .models import (
     DatosPersonales, ExperienciaLaboral, Reconocimientos,
@@ -63,11 +59,22 @@ class ProductoLaboralAdmin(admin.ModelAdmin):
         'perfil', 'nombreproducto', 'fechaproducto', 'descripcion', 'activarparaqueseveaenfront', 'rutaproductolaboral',
     )
 
+from django.contrib import admin
+from django.utils.html import format_html
+from .models import VentaGarage
+
+
 @admin.register(VentaGarage)
 class VentaGarageAdmin(admin.ModelAdmin):
-    list_display = ('nombreproducto', 'valordelbien', 'estadoproducto', 'activarparaqueseveaenfront')
+    list_display = ('nombreproducto', 'valordelbien', 'estadoproducto', 'activarparaqueseveaenfront', 'imagen_preview')
     list_filter = ('estadoproducto', 'activarparaqueseveaenfront')
-    fields = (
-        'perfil', 'nombreproducto', 'estadoproducto', 'descripcion', 'valordelbien',
-        'activarparaqueseveaenfront', 'rutaproducto',
-    )
+    fields = ('perfil', 'nombreproducto', 'estadoproducto', 'descripcion', 'valordelbien', 'activarparaqueseveaenfront', 'imagen_preview', 'rutaproducto')
+    readonly_fields = ('imagen_preview',)
+
+    def imagen_preview(self, obj):
+        if obj.rutaproducto:
+            return format_html('<img src="{}" width="120" style="border-radius:8px;" />', obj.rutaproducto.url)
+        return "Sin imagen"
+
+    imagen_preview.short_description = 'Vista previa'
+

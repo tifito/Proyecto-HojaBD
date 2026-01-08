@@ -92,6 +92,36 @@
                             <strong>Email:</strong> {{ perfil.email|default:"No tiene" }}
                         </p>
                     </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <p class="mb-2 text-muted">
+                            <i class="bi bi-phone me-2 text-primary"></i>
+                            <strong>Celular:</strong> {{ perfil.telefonofijo|default:"No tiene" }}
+                        </p>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <p class="mb-2 text-muted">
+                            <i class="bi bi-house-door me-2 text-primary"></i>
+                            <strong>Dirección domiciliaria:</strong> {{ perfil.direcciondomiciliaria|default:"No registrada" }}
+                        </p>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <p class="mb-2 text-muted">
+                            <i class="bi bi-building me-2 text-primary"></i>
+                            <strong>Dirección de trabajo:</strong> {{ perfil.direcciontrabajo|default:"No registrada" }}
+                        </p>
+                    </div>
+                    {% if perfil.sitioweb %}
+                    <div class="col-sm-6 col-lg-4">
+                        <p class="mb-2 text-muted">
+                            <i class="bi bi-globe me-2 text-primary"></i>
+                            <strong>Sitio web:</strong>
+                            <a href="{{ perfil.sitioweb }}" target="_blank">{{ perfil.sitioweb }}</a>
+                        </p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -110,7 +140,11 @@
     </section>
 
     {% else %}
-    <p class="text-center text-muted">No hay datos de perfil para mostrar.</p>
+    <div class="text-center py-5">
+        <h4 class="text-muted fw-semibold">
+            Este perfil no se encuentra activo.
+        </h4>
+    </div>
     {% endif %}
 
 </main>
