@@ -42,7 +42,7 @@ class CursoRealizadoAdmin(admin.ModelAdmin):
     fields = (
         'perfil', 'nombrecurso', 'fechainicio', 'fechafin', 'totalhoras', 'descripcioncurso',
         'entidadpatrocinadora', 'nombrecontactoauspicia', 'telefonocontactoauspicia',
-        'emailempresapatrocinadora', 'activarparaqueseveaenfront', 'rutacertificado'
+        'emailempresapatrocinadora', 'activarparaqueseveaenfront', 'rutacertificado','imagendelacolumnadearriba',
     )
 
 @admin.register(ProductosAcademicos)

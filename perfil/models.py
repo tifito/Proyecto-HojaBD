@@ -78,7 +78,8 @@ class CursoRealizado(models.Model):
     telefonocontactoauspicia = models.CharField(max_length=60, blank=True, null=True)
     emailempresapatrocinadora = models.CharField(max_length=60, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
-    rutacertificado = CloudinaryField('certificado', blank=True, null=True)
+    rutacertificado = CloudinaryField('certificado_PDF', blank=True, null=True)
+    imagendelacolumnadearriba=CloudinaryField('certificado_IMG', blank=True, null=True)
 
     def __str__(self):
         return f"{self.nombrecurso} - {self.perfil}"

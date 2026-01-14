@@ -219,7 +219,7 @@
     {% for p in productos %}
         <div class="item">
             <b>{{ p.nombreproducto }}{% if p.fechaproducto %} · {{ p.fechaproducto }}{% endif %}</b>
-            {% if p.descripcion %}
+            {% if p.descripcion %} 
                 <div class="desc">{{ p.descripcion }}</div>
             {% endif %}
         </div>
@@ -242,6 +242,55 @@
     {% endfor %}
 </div>
 {% endif %}
+
+
+<!-- ===== ANEXOS ===== -->
+{% if cursos %}
+<div class="seccion" style="page-break-before: always;">
+
+    <!-- TEXTO BLANCO PARA EMPUJAR ANEXOS HACIA ABAJO -->
+    <div style="
+        color: white;
+        font-size: 60px;
+        line-height: 1.6;
+        text-align: center;
+    ">
+        <br>
+        ESPACIO<br>
+        ESPACIO<br>
+        ESPACIO
+    </div>
+
+    <h2 style="
+        color:#000;
+        font-size:50px;
+        text-align:center;
+        border-bottom:none;
+        letter-spacing:3px;
+        margin:0;
+    ">
+        ANEXOS
+    </h2>
+
+</div>
+
+<!-- CERTIFICADOS EN PÁGINAS NUEVAS -->
+{% for c in cursos %}
+    {% if c.imagendelacolumnadearriba %}
+        <div class="item" style="page-break-before: always; text-align:center;">
+            <img 
+                src="{{ c.imagendelacolumnadearriba.url }}" 
+                style="width:100%; max-width:500px;"
+            >
+        </div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+        
+
+
+
 
 </body>
 </html>
