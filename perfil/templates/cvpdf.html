@@ -84,6 +84,11 @@
             line-height: 1.5;
             text-align: justify;
         }
+        .seccion {
+            margin-top: 25px;
+            page-break-inside: avoid;
+        }       
+
 
         /* ===== ITEMS ===== */
         .item {
@@ -137,13 +142,22 @@
         <tr>
             <td class="header-left">
                 <h1>{{ perfil.nombres }} {{ perfil.apellidos }}</h1>
+
+                {% if perfil.titulodescripcion %}
                 <div class="titulo-profesional">
                     {{ perfil.titulodescripcion }}
                 </div>
+                {% endif %}
+
+                {% if perfil.email or perfil.direcciondomiciliaria or perfil.telefonofijo %}
                 <div class="contacto">
-                    {{ perfil.email }} / {{ perfil.direcciondomiciliaria }} / {{ perfil.telefonofijo }}
+                    {% if perfil.email %}{{ perfil.email }}{% endif %}
+                    {% if perfil.direcciondomiciliaria %} / {{ perfil.direcciondomiciliaria }}{% endif %}
+                    {% if perfil.telefonofijo %} / {{ perfil.telefonofijo }}{% endif %}
                 </div>
+                {% endif %}
             </td>
+
             <td class="header-right">
                 {% if perfil.fotodeperfil %}
                     <img src="{{ perfil.fotodeperfil.url }}" class="foto">
@@ -152,6 +166,7 @@
         </tr>
     </table>
 </div>
+
 
 <!-- ===== PERFIL PROFESIONAL ===== -->
 {% if perfil.descripcionperfil %}
@@ -269,7 +284,7 @@
         letter-spacing:3px;
         margin:0;
     ">
-        ANEXOS
+        CERTIFICADOS
     </h2>
 
 </div>

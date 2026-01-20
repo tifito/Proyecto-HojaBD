@@ -29,7 +29,7 @@ class DatosPersonales(models.Model):
 # Experiencia Laboral
 class ExperienciaLaboral(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
-    cargodesempenado = models.CharField(max_length=100)
+    cargodesempenado = models.CharField(max_length=300)
     nombrempresa = models.CharField(max_length=50)
     lugarempresa = models.CharField(max_length=50)
     emailempresa = models.CharField(max_length=100, blank=True, null=True)
@@ -38,7 +38,7 @@ class ExperienciaLaboral(models.Model):
     telefonocontactoempresarial = models.CharField(max_length=60, blank=True, null=True)
     fechainiciogestion = models.DateField()
     fechafingestion = models.DateField(blank=True, null=True)
-    descripcionfunciones = models.CharField(max_length=100, blank=True, null=True)
+    descripcionfunciones = models.CharField(max_length=300, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutacertificado = CloudinaryField('certificado', blank=True, null=True)
 
@@ -54,7 +54,7 @@ class Reconocimientos(models.Model):
         choices=[('Académico', 'Académico'), ('Público', 'Público'), ('Privado', 'Privado')]
     )
     fechareconocimiento = models.DateField()
-    descripcionreconocimiento = models.CharField(max_length=100, blank=True, null=True)
+    descripcionreconocimiento = models.CharField(max_length=300, blank=True, null=True)
     entidadpatrocinadora = models.CharField(max_length=100, blank=True, null=True)
     nombrecontactoauspicia = models.CharField(max_length=100, blank=True, null=True)
     telefonocontactoauspicia = models.CharField(max_length=60, blank=True, null=True)
@@ -72,7 +72,7 @@ class CursoRealizado(models.Model):
     fechainicio = models.DateField()
     fechafin = models.DateField(blank=True, null=True)
     totalhoras = models.IntegerField(blank=True, null=True)
-    descripcioncurso = models.CharField(max_length=100, blank=True, null=True)
+    descripcioncurso = models.CharField(max_length=300, blank=True, null=True)
     entidadpatrocinadora = models.CharField(max_length=100, blank=True, null=True)
     nombrecontactoauspicia = models.CharField(max_length=100, blank=True, null=True)
     telefonocontactoauspicia = models.CharField(max_length=60, blank=True, null=True)
@@ -90,7 +90,7 @@ class ProductosAcademicos(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombrerecurso = models.CharField(max_length=100)
     clasificador = models.CharField(max_length=100, blank=True, null=True)
-    descripcion = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.CharField(max_length=300, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutaproductoacademico = CloudinaryField('imagen del producto académico', blank=True, null=True)
     def __str__(self):
