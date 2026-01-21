@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
-# Tabla principal: Perfil
+
 class DatosPersonales(models.Model):
     descripcionperfil = models.CharField(max_length=500)
-    titulodescripcion=models.CharField(max_length=200)
+    titulodescripcion = models.CharField(max_length=200)
     perfilactivo = models.BooleanField(default=True)
     apellidos = models.CharField(max_length=60)
     nombres = models.CharField(max_length=60)
@@ -26,7 +27,6 @@ class DatosPersonales(models.Model):
         return f"{self.nombres} {self.apellidos}"
 
 
-# Experiencia Laboral
 class ExperienciaLaboral(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     cargodesempenado = models.CharField(max_length=300)
@@ -42,11 +42,16 @@ class ExperienciaLaboral(models.Model):
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutacertificado = CloudinaryField('certificado', blank=True, null=True)
 
+    def clean(self):
+        if self.fechafingestion and self.fechafingestion < self.fechainiciogestion:
+            raise ValidationError({
+                'fechafingestion': 'La fecha de finalización no puede ser menor que la fecha de inicio.'
+            })
+
     def __str__(self):
         return f"{self.cargodesempenado} en {self.nombrempresa}"
 
 
-# Reconocimientos
 class Reconocimientos(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     tiporeconocimiento = models.CharField(
@@ -65,7 +70,6 @@ class Reconocimientos(models.Model):
         return f"{self.tiporeconocimiento} - {self.perfil}"
 
 
-# Cursos Realizados
 class CursoRealizado(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombrecurso = models.CharField(max_length=100)
@@ -79,13 +83,18 @@ class CursoRealizado(models.Model):
     emailempresapatrocinadora = models.CharField(max_length=60, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutacertificado = CloudinaryField('certificado_PDF', blank=True, null=True)
-    imagendelacolumnadearriba=CloudinaryField('certificado_IMG', blank=True, null=True)
+    imagendelacolumnadearriba = CloudinaryField('certificado_IMG', blank=True, null=True)
+
+    def clean(self):
+        if self.fechafin and self.fechafin < self.fechainicio:
+            raise ValidationError({
+                'fechafin': 'La fecha de finalización no puede ser menor que la fecha de inicio.'
+            })
 
     def __str__(self):
         return f"{self.nombrecurso} - {self.perfil}"
 
 
-# Productos Académicos
 class ProductosAcademicos(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombrerecurso = models.CharField(max_length=100)
@@ -93,11 +102,11 @@ class ProductosAcademicos(models.Model):
     descripcion = models.CharField(max_length=300, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutaproductoacademico = CloudinaryField('imagen del producto académico', blank=True, null=True)
+
     def __str__(self):
         return f"{self.nombrerecurso} - {self.perfil}"
 
 
-# Productos Laborales
 class ProductoLaboral(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombreproducto = models.CharField(max_length=100)
@@ -105,11 +114,11 @@ class ProductoLaboral(models.Model):
     descripcion = models.CharField(max_length=1000, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
     rutaproductolaboral = models.CharField(max_length=500, blank=True, null=True)
+
     def __str__(self):
         return f"{self.nombreproducto} - {self.perfil}"
 
 
-# Venta Garage
 class VentaGarage(models.Model):
     perfil = models.ForeignKey(DatosPersonales, on_delete=models.CASCADE)
     nombreproducto = models.CharField(max_length=100)
@@ -117,13 +126,7 @@ class VentaGarage(models.Model):
     descripcion = models.CharField(max_length=1000, blank=True, null=True)
     valordelbien = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
     activarparaqueseveaenfront = models.BooleanField(default=True)
-    rutaproducto = CloudinaryField(
-    'ruta del producto',
-    blank=True,
-    null=True
-)
+    rutaproducto = CloudinaryField('ruta del producto', blank=True, null=True)
 
     def __str__(self):
         return f"{self.nombreproducto} - {self.perfil}"
-
-
