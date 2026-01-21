@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from perfil import views  # Vistas de tu app "perfil"
+from perfil import views  
 # Archivos estáticos en DEBUG
 from django.conf import settings
 from django.conf.urls.static import static

@@ -67,15 +67,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Administrar página (solo si está logueado) -->
-    {% if user.is_authenticated %}
-        <a href="/admin/" class="btn btn-outline-dark btn-lg">
-            <i class="bi bi-gear-fill me-2"></i>
-            Administrar página
-        </a>
-    {% endif %}
-
-</div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Hoja de Vida</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'cursos' %}">Cursos</a></li>

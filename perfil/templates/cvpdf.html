@@ -10,7 +10,7 @@
             font-size: 11px;
         }
 
-        /* ===== HEADER ===== */
+        
         .header {
             width: 100%;
             margin-bottom: 30px;
@@ -75,7 +75,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== RESUMEN ===== */
+        
         .resumen {
             font-size: 11px;
             color: #374151;
@@ -91,7 +91,7 @@
         .item b {
             font-size: 11.5px;
             color: #111;
-            display: block; /* título arriba */
+            display: block; 
             margin-bottom: 2px;
         }
 
@@ -108,7 +108,7 @@
             color: #374151;
             margin: 0;
             display: inline-block;
-            margin-left: 6px; /* separación de la fecha */
+            margin-left: 6px; 
         }
 
         .curso-desc {
@@ -118,7 +118,7 @@
             margin-top: 2px;
         }
 
-        /* ===== FOOTER ===== */
+        
         .footer {
             margin-top: 40px;
             text-align: center;
@@ -130,7 +130,7 @@
 
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER  -->
 <div class="header">
     <table class="header-table">
         <tr>
@@ -162,7 +162,7 @@
 </div>
 
 
-<!-- ===== PERFIL PROFESIONAL ===== -->
+<!-- PERFIL PROFESIONAL -->
 {% if perfil.descripcionperfil %}
 <div class="seccion">
     <h2>Perfil profesional</h2>
@@ -172,7 +172,7 @@
 </div>
 {% endif %}
 
-<!-- ===== FORMACIÓN ACADÉMICA ===== -->
+<!--  FORMACIÓN ACADÉMICA  -->
 {% if academico %}
 <div class="seccion">
     <h2>Formación académica</h2>
@@ -187,7 +187,7 @@
 </div>
 {% endif %}
 
-<!-- ===== CURSOS REALIZADOS ===== -->
+<!--  CURSOS REALIZADOS  -->
 {% if cursos %}
 <div class="seccion">
     <h2>Cursos realizados</h2>
@@ -203,7 +203,7 @@
 </div>
 {% endif %}
 
-<!-- ===== EXPERIENCIA LABORAL ===== -->
+<!--  EXPERIENCIA LABORAL  -->
 {% if experiencias %}
 <div class="seccion">
     <h2>Experiencia laboral</h2>
@@ -221,7 +221,7 @@
 </div>
 {% endif %}
 
-<!-- ===== PRODUCTO LABORAL ===== -->
+<!--  PRODUCTO LABORAL  -->
 {% if productos %}
 <div class="seccion">
     <h2>Producto laboral</h2>
@@ -243,7 +243,7 @@
 {% endif %}
 
 
-<!-- ===== RECONOCIMIENTOS ===== -->
+<!--  RECONOCIMIENTOS  -->
 {% if reconocimientos %}
 <div class="seccion">
     <h2>Reconocimientos</h2>
@@ -260,11 +260,11 @@
 {% endif %}
 
 
-<!-- ===== ANEXOS ===== -->
+
 {% if cursos %}
 <div class="seccion" style="page-break-before: always;">
 
-    <!-- TEXTO BLANCO PARA EMPUJAR ANEXOS HACIA ABAJO -->
+    
     <div style="
         color: white;
         font-size: 60px;
@@ -290,7 +290,7 @@
 
 </div>
 
-<!-- CERTIFICADOS EN PÁGINAS NUEVAS -->
+<!--CERTIFICADOS -->
 {% for c in cursos %}
     {% if c.imagendelacolumnadearriba %}
         <div class="item" style="page-break-before: always; text-align:center;">
