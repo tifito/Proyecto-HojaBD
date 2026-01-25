@@ -68,7 +68,7 @@ from .models import VentaGarage
 class VentaGarageAdmin(admin.ModelAdmin):
     list_display = ('nombreproducto', 'valordelbien', 'estadoproducto', 'activarparaqueseveaenfront', 'imagen_preview')
     list_filter = ('estadoproducto', 'activarparaqueseveaenfront')
-    fields = ('perfil', 'nombreproducto', 'estadoproducto', 'descripcion', 'valordelbien', 'activarparaqueseveaenfront', 'imagen_preview', 'rutaproducto')
+    fields = ('perfil', 'nombreproducto','fechapublicacion', 'estadoproducto', 'descripcion', 'valordelbien', 'activarparaqueseveaenfront', 'imagen_preview', 'rutaproducto')
     readonly_fields = ('imagen_preview',)
 
     def imagen_preview(self, obj):

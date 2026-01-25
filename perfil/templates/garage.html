@@ -9,42 +9,65 @@
 
         {% if ventagarage %}
             <div class="row g-4 justify-content-center">
+
                 {% for item in ventagarage %}
                 <div class="col-md-6">
-                    <div class="card producto-card h-100 p-4">
 
+                    <div class="card producto-card h-100 p-4">
                         <div class="row align-items-center">
 
-                            
+                            <!-- Imagen -->
                             <div class="col-md-4 text-center mb-3 mb-md-0">
                                 {% if item.rutaproducto %}
                                     <img src="{{ item.rutaproducto.url }}"
                                          alt="{{ item.nombreproducto }}"
                                          class="img-fluid rounded-3 shadow-sm">
+                                {% else %}
+                                    <span class="text-muted">Sin imagen</span>
                                 {% endif %}
                             </div>
 
-                            
+                            <!-- Información -->
                             <div class="col-md-8">
                                 <h5 class="fw-bold mb-2">
                                     <i class="bi bi-box-seam me-2 text-primary"></i>
                                     {{ item.nombreproducto }}
                                 </h5>
 
+                                <!-- Fecha -->
                                 <p class="mb-1 text-muted">
-                                    <i class="bi bi-check-circle me-2"></i>
-                                    {{ item.estadoproducto }}
+                                    <i class="bi bi-calendar-event me-2"></i>
+                                    Publicado el {{ item.fechapublicacion|date:"d/m/Y" }}
                                 </p>
 
+                                <!-- Estado -->
+                                <p class="mb-2">
+                                    {% if item.estadoproducto == "Bueno" %}
+                                        <span class="estado-badge estado-bueno">
+                                            Bueno
+                                        </span>
+                                    {% else %}
+                                        <span class="estado-badge estado-regular">
+                                            Regular
+                                        </span>
+                                    {% endif %}
+                                </p>
+
+                                <!-- Precio -->
+                                {% if item.valordelbien %}
                                 <p class="mb-1 text-muted">
                                     <i class="bi bi-cash-coin me-2"></i>
                                     ${{ item.valordelbien }}
                                 </p>
+                                {% endif %}
 
+                                <!-- Descripción -->
+                                {% if item.descripcion %}
                                 <p class="mb-3 text-muted">
                                     <i class="bi bi-info-circle me-2"></i>
                                     {{ item.descripcion }}
                                 </p>
+                                {% endif %}
 
                                 {% if item.rutaproducto %}
                                 <div class="d-flex justify-content-end">
@@ -60,8 +83,10 @@
 
                         </div>
                     </div>
+
                 </div>
                 {% endfor %}
+
             </div>
         {% else %}
             <p class="text-center text-muted">
@@ -69,39 +94,33 @@
             </p>
         {% endif %}
 
-    {% else %}
-        <div class="text-center py-5">
-            <h4 class="text-muted fw-semibold">
-                Este perfil no se encuentra activo.
-            </h4>
-        </div>
     {% endif %}
 
 </main>
 
 <style>
-/*probando*/ 
 .producto-card {
     background: linear-gradient(135deg, #f8fafc, #eef2f7);
     border-left: 4px solid #2563eb;
     border-radius: 16px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.producto-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.2);
-}
-
 
 .estado-badge {
-    background-color: #e8f0fe;
-    color: #2563eb;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+}
+
+.estado-bueno {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.estado-regular {
+    background-color: #fef3c7;
+    color: #92400e;
 }
 </style>
 {% endblock %}
