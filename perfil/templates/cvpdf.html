@@ -255,15 +255,15 @@
     {% endfor %}
 {% endif %}
 
-{% if mostrar_reconocimientos and reconocimientos %}
-    {% for r in reconocimientos %}
-        {% if r.reconocimientodelacolumnadearriba %}
-            <div style="page-break-before: always; text-align:center;">
-                <img src="{{ r.reconocimientodelacolumnadearriba }}" style="width:100%; max-width:500px;">
+{% for r in reconocimientos %}
+    {% if r.reconocimientodelacolumnadearriba %}
+        {% with r.reconocimientodelacolumnadearriba.url as url_img %}
+            <div style="page-break-before: always; display: flex; justify-content: center; align-items: center; height: 80vh;">
+                <img src="{{ url_img|safe }}" style="max-width:500px; max-height:100%;">
             </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+        {% endwith %}
+    {% endif %}
+{% endfor %}
 
 {% endif %}
 
